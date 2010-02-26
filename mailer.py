@@ -10,39 +10,35 @@ from google.appengine.api import mail
 
 class Mailer(webapp.RequestHandler):
     def post(self):
-        messageBody = self.request.get('content')
+        msgRecipient = self.request.get('msgRecipient')
+        msgSubject   = self.request.get('msgSubject')
+        msgBody      = self.request.get('msgBody')
         
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write('Hello, this webapp World! -- ')
+        self.response.out.write('Your mail has been sent!')
         
         reqPath = self.request.path
+
         if reqPath == "/mail/send":
-            self.sendmail(messageBody)
+            self.sendmail(msgRecipient, msgSubject, msgBody)
 
-    # def get(self):
-    #     self.response.headers['Content-Type'] = 'text/plain'
-    #     self.response.out.write('Hello, this webapp World! -- ')
-        
-    #     reqPath = self.request.path
-    #     if reqPath == "/mail/send":
-    #         self.sendmail()
 
-    def sendmail(self, messageBody):
-        message = mail.EmailMessage(sender="Emre Sevinc <emre.sevinc@gmail.com>",
-                            subject="Your account has been approved")
+    def sendmail(self, msgRecipient, msgSubject, msgBody):
+        if msgRecipient == "": # create a default recipient
+            msgRecipient = "emre.sevinc@gmail.com"
 
-        message.to = "emre.sevinc@gmail.com"
-        message.body = messageBody
-        # message.body = """
-        #  Dear Albert:
+        if msgSubject == "": #create a default subject
+            msgSubject = "Default subject"
 
-        #  Your example.com account has been approved.  You can now visit
-        #  http://www.example.com/ and sign in using your Google Account to
-        #  access new features.
+        if msgBody == "": # create a default message
+            msgBody = "Default message body"
 
-        #  Please let us know if you have any questions.
 
-        #  The example.com Team
-        #  """
+        message = mail.EmailMessage(sender  = "Emre Sevinc <emre.sevinc@gmail.com>",
+                                    subject = msgSubject)
+
+        message.to = msgRecipient
+        message.body = msgBody
+
         message.send()
 
