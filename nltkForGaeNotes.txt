@@ -1,0 +1,146 @@
+__init.py__
+
+lines 136-147
+
+# from downloader import download, download_shell
+# try:
+#     import Tkinter
+# except ImportError:
+#     pass
+# else:
+#     try:
+#         from downloader import download_gui
+#     except RuntimeError, e:
+#         import warnings
+#         warnings.warn("Corpus downloader GUI not loaded "
+#                       "(RuntimeError during import: %s" % str(e))
+
+=================================================================================
+
+parse/featurechart.py
+
+# import nltk.data
+
+because 
+
+<type 'exceptions.ImportError'>: No module named pwd
+
+...
+
+File "/base/data/home/apps/clozefox/1.340225271112091888/nltk/parse/featurechart.py", line 24, in <module>
+    import nltk.data
+  File "/base/data/home/apps/clozefox/1.340225271112091888/nltk/data.py", line 72, in <module>
+    if os.path.expanduser('~/') != '~/': path += [
+  File "/base/python_dist/lib/python2.5/posixpath.py", line 320, in expanduser
+    import pwd
+
+===================================================================================
+
+parse/util.py
+
+# import nltk.data
+
+because
+
+ File "/base/data/home/apps/clozefox/1.340225466933025646/nltk/parse/util.py", line 18, in <module>
+    import nltk.data
+  File "/base/data/home/apps/clozefox/1.340225466933025646/nltk/data.py", line 72, in <module>
+    if os.path.expanduser('~/') != '~/': path += [
+  File "/base/python_dist/lib/python2.5/posixpath.py", line 320, in expanduser
+    import pwd
+
+====================================================================================
+
+__init.py__
+
+# import data
+
+because
+
+<type 'exceptions.ImportError'>: No module named pwd
+Traceback (most recent call last):
+  File "/base/data/home/apps/clozefox/1.340225518313215108/main.py", line 11, in <module>
+    from nltkTest import *
+  File "/base/data/home/apps/clozefox/1.340225518313215108/nltkTest.py", line 11, in <module>
+    from nltk import word_tokenize
+  File "/base/data/home/apps/clozefox/1.340225518313215108/nltk/__init__.py", line 97, in <module>
+    import data
+  File "/base/data/home/apps/clozefox/1.340225518313215108/nltk/data.py", line 72, in <module>
+    if os.path.expanduser('~/') != '~/': path += [
+  File "/base/python_dist/lib/python2.5/posixpath.py", line 320, in expanduser
+    import pwd
+
+======================================================================================
+
+help.py
+
+# from nltk.data import load
+
+because
+
+<type 'exceptions.ImportError'>: No module named pwd
+Traceback (most recent call last):
+  File "/base/data/home/apps/clozefox/1.340225588165776273/main.py", line 11, in <module>
+    from nltkTest import *
+  File "/base/data/home/apps/clozefox/1.340225588165776273/nltkTest.py", line 11, in <module>
+    from nltk import word_tokenize
+  File "/base/data/home/apps/clozefox/1.340225588165776273/nltk/__init__.py", line 98, in <module>
+    import help
+  File "/base/data/home/apps/clozefox/1.340225588165776273/nltk/help.py", line 15, in <module>
+    from nltk.data import load
+  File "/base/data/home/apps/clozefox/1.340225588165776273/nltk/data.py", line 72, in <module>
+    if os.path.expanduser('~/') != '~/': path += [
+  File "/base/python_dist/lib/python2.5/posixpath.py", line 320, in expanduser
+    import pwd
+
+=======================================================================================
+
+__init.py__
+
+# import inference; from inference import *
+
+because
+
+<type 'exceptions.ImportError'>: No module named pwd
+Traceback (most recent call last):
+  File "/base/data/home/apps/clozefox/1.340225631746449523/main.py", line 11, in <module>
+    from nltkTest import *
+  File "/base/data/home/apps/clozefox/1.340225631746449523/nltkTest.py", line 11, in <module>
+    from nltk import word_tokenize
+  File "/base/data/home/apps/clozefox/1.340225631746449523/nltk/__init__.py", line 108, in <module>
+    import inference; from inference import *
+  File "/base/data/home/apps/clozefox/1.340225631746449523/nltk/inference/__init__.py", line 19, in <module>
+    from discourse import *
+  File "/base/data/home/apps/clozefox/1.340225631746449523/nltk/inference/discourse.py", line 14, in <module>
+    from nltk.data import show_cfg
+  File "/base/data/home/apps/clozefox/1.340225631746449523/nltk/data.py", line 72, in <module>
+    if os.path.expanduser('~/') != '~/': path += [
+  File "/base/python_dist/lib/python2.5/posixpath.py", line 320, in expanduser
+    import pwd
+
+
+============================================================================
+
+C:\Program Files\Google\google_appengine\google\appengine\tools\dev_appserver.py
+
+because 
+
+http://code.google.com/p/googleappengine/issues/detail?id=48
+
+-  def __init__(self, filename, mode='r', **kwargs):
++  def __init__(self, filename, mode='r', buffering=-1, **kwargs):
+     """Initializer. See file built-in documentation."""
+     if mode not in FakeFile.ALLOWED_MODES:
+       raise IOError('invalid mode: %s' % mode)
+@@ -747,7 +747,7 @@
+     if not FakeFile.IsFileAccessible(filename):
+       raise IOError(errno.EACCES, 'file not accessible')
+
+-    super(FakeFile, self).__init__(filename, mode, **kwargs)
++    super(FakeFile, self).__init__(filename, mode, buffering=-1, **kwargs)
+
+=============================================================================
+
+
+
+
