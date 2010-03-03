@@ -8,6 +8,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
 from mailer import *
+from nltkTest import *
 
 class Greeting(db.Model):
     author = db.UserProperty()
@@ -53,6 +54,7 @@ application = webapp.WSGIApplication(
                                       ,('/sign', Guestbook)
                                       ,('/mail', Mailer)
                                       ,('/mail/send', Mailer)
+                                      ,('/nltk', NLTKTest)
                                       ],
                                      debug=True)
 
