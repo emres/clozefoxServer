@@ -23,11 +23,11 @@ class NLPlib:
 	def __init__(self):
 		if(len(self.lexHash) == 0):
 			try:
-				print "unpickle the dictionary"
+				# print "unpickle the dictionary"
 				upkl = open('nlplib/' + 'pickledlexicon', 'r')
 				self.lexHash = pickle.load(upkl)
 				upkl.close()
-				print "Initialized lexHash from pickled data."
+				# print "Initialized lexHash from pickled data."
 		
 #				print "printing unpickled dictionary"
 #				i = 0

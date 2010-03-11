@@ -17,9 +17,36 @@ sys.path.append('./nlplib')
 from NLPlib import *
 
 class NLTKTest(webapp.RequestHandler):
+    def post(self):
+
+        nlProcessor = NLPlib()
+        content = self.request.get('content')
+        tokens = nlProcessor.tokenize(content) 
+        taggedContent = nlProcessor.tag(tokens)
+
+        content = taggedContent
+
+        for i in range(len(taggedContent)):
+            isVerb = (taggedContent[i] == "VBD" or taggedContent[i] == "VBZ") 
+            if isVerb:
+                correctVerb = tokens[i]
+                tokens[i] = "<select id=\"clozefox_answer\">"
+                tokens[i] += "<option value=\"wrongAnswer\">loves</option>" 
+                tokens[i] += "<option value=\"wrongAnswer\">hates</option>" 
+                tokens[i] += "<option  value=\"trueAnswer\">" + correctVerb + "</option>"
+                tokens[i] += "</select>"
+        
+        content = ' '.join(tokens)
+
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(content)
+        # self.response.out.write("____ VERB TEST ____")
+
+
+
+class ______NLTKTest(webapp.RequestHandler):
     def get(self):
         # tokenList = word_tokenize("John's big idea isn't all that bad.")
-        
         # tokenList = pos_tag(word_tokenize("John's big idea isn't all that bad.")) 
 
         stemmer = PorterStemmer()
